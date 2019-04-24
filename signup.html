@@ -7,35 +7,44 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="/home/josefina/Documentos/Digital House/greendr/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
     <title></title>
   </head>
+
+
   <body>
     <div class="container">
       <div class="form-container rounded-lg rounded-sm signupform">
-        <form class="signup form-block">
+        <form class="signup" method="post">
           <div class="form-groups rounded-lg rounded-sm">
-            <label for="">Nombre</label>
-            <input type="text" class="form-controls" id="">
+            <label for="name">Nombre:</label>
+            <input type="text" class="form-controls" id="name">
           </div>
           <div class="form-groups rounded-lg rounded-sm">
-            <label for="">Apellido</label>
-            <input type="text" class="form-controls" id="">
+            <label for="last">Apellido: </label>
+            <input type="text" class="form-controls" id="last">
           </div>
           <div class="form-groups rounded-lg rounded-sm">
-            <label for="exampleInputEmail1">E-mail</label>
+            <label for="exampleInputEmail1">E-mail: </label>
             <input type="email" class="form-controls" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="form-groups">
-            <label for="exampleInputPassword1">Contraseña</label>
+            <label for="exampleInputPassword1">Contraseña: </label>
             <input type="password" class="form-controls" id="exampleInputPassword1">
           </div>
+
           <div class="form-groups">
-            <label for="exampleInputPassword1">Repetir contraseña</label>
-            <input type="password" class="form-controls" id="exampleInputPassword1">
+            <label for="exampleInputPassword2">Repetir contraseña: </label>
+            <input type="password" class="form-controls" id="exampleInputPassword2">
           </div>
+
           <button action="index.html" type="submit" class="btn btn-success jboton"><p>Crear cuenta</p></button>
         </form>
+
+        <button type="button" class="close" aria-label="Close">
+  <a href="index.php"><span aria-hidden="true">&times;  </span></a>
+</button>
+
         </div>
 
     </div>
