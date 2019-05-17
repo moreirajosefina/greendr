@@ -23,14 +23,6 @@
             "user": "fanita",
             "pass": "$2y$10$yrr48oO36XRyPxsjvLpBYOb3fNKuYj.Wbacfc9uxaxtXZVGBbKQZq",
             "avatar": "archivos\/fanita.jpg"
-        },
-        {
-            "id": 4,
-            "nombre": "Josefina",
-            "email": "moreiraajosefina@gmail.com",
-            "user": "josefina",
-            "pass": "$2y$10$PpPTa15ye45xLG0Vgn\/Ua.cpxShfoUgUrzGCJ6aLfMEByi30EeZWm",
-            "avatar": "archivos\/josefina.png"
         }
     ]
 }
