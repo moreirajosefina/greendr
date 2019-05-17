@@ -1,0 +1,2 @@
+Greendr es una red social para el intercambio de plantas, esquejes, semillas y elementos de jardinería. Cada usuario/a puede ofrecer y buscar productos. Cuando dos personas coinciden (hacen "match") pueden iniciar una conversación por mensaje privado para definir un punto de encuentro y llevar a cabo el intercambio.
+Además, la plataforma ofrece artículos cortos con consejos y novedades relacionadas con el mundo de la jardinería y la huerta.
