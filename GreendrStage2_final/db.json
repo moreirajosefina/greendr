@@ -1,0 +1,36 @@
+{
+    "usuarios": [
+        {
+            "id": 1,
+            "nombre": "anita ines",
+            "email": "gdi.anaines@gmail.com",
+            "user": "anita",
+            "pass": "$2y$10$tS9.nwytLF9EsyXkxfkNquJkYZqLeK5YWShGDwKOjlKX4bVdDRzm6",
+            "avatar": "archivos\/anita.png"
+        },
+        {
+            "id": 2,
+            "nombre": "colorete",
+            "email": "colorete@gmail.com",
+            "user": "colorete",
+            "pass": "$2y$10$0oXPWAVQH83AzOW8lTwbzeFxOf0aOE3QlaVr2zvBAezg\/JWXf9VR6",
+            "avatar": "archivos\/colorete.png"
+        },
+        {
+            "id": 3,
+            "nombre": "fani",
+            "email": "fani@hotmail.com",
+            "user": "fanita",
+            "pass": "$2y$10$yrr48oO36XRyPxsjvLpBYOb3fNKuYj.Wbacfc9uxaxtXZVGBbKQZq",
+            "avatar": "archivos\/fanita.jpg"
+        },
+        {
+            "id": 4,
+            "nombre": "Josefina",
+            "email": "moreiraajosefina@gmail.com",
+            "user": "josefina",
+            "pass": "$2y$10$PpPTa15ye45xLG0Vgn\/Ua.cpxShfoUgUrzGCJ6aLfMEByi30EeZWm",
+            "avatar": "archivos\/josefina.png"
+        }
+    ]
+}
