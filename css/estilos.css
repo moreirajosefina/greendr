@@ -1,0 +1,1292 @@
+/* Colores:
+Verde: #49643d
+Celeste-grisáceo: #5b798e
+Rojo: #ad4139
+Beige: #9a8554
+Cremita fondo: #ddddcf
+
+Nuevos colores:
+Naranja: #f28e22
+Magenta: #ff0393
+Azul: #1b4e6d
+Verde loro: #89ff00
+Verde turquesa: #01635e
+Blanco fondo: #ffffff
+
+ */
+
+ /* Resets*/
+ *{
+ box-sizing: border-box;
+ }
+ ul,ol{
+   padding: 0;
+ }
+ li{
+   list-style-type: none;
+ }
+ a{
+   text-decoration: none;
+   color: #000;
+ }
+ /*  */
+
+
+body{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  /* para corregir la hamburguesa */
+  /* z-index: 500; */
+}
+
+
+/* BARRA NAV MOBILE*/
+.contenedor_nav{
+  position: fixed;
+  z-index: 1000;
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  max-width: 760px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  margin: auto;
+  border-bottom: 5px dotted #01635e;
+  margin-bottom: 10px;
+}
+
+.logo{
+  width: 38.53%;
+  text-align: center;
+}
+.logotipo2{
+  width: 150px;
+  margin: 0;
+  padding: 10px;
+}
+
+.logotipo{
+  display: none;
+}
+
+nav {
+  padding: 10px;
+  display: flex;
+  /* flex-direction: column; */
+  flex-direction: column-reverse;
+  width: 74.47%;
+}
+
+.form_nav{
+  width: 100%;
+}
+
+.buscador_container{
+  display: flex;
+  width: 136%;
+  margin-bottom: 5px;
+}
+.input_nav{
+  /* background: #5b798e; */
+  /* background: #ff0393;magenta */
+  background: #01635e;
+  border-style: none;
+  border-radius: 3px;
+  height: 37px;
+  padding-left: 10px;
+  width: 68%;
+
+}
+.button_nav{
+  margin-left: -10px;
+  padding-bottom: 0px;
+  /* background-color: #5b798e; */
+  /* background-color: #ff0393;magenta */
+  background-color: #01635e;
+  border-style: none;
+  border-radius: 3px;
+  height: 37px;
+}
+
+
+
+.iconos-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+
+/* .chip_fieldset {
+  height: 30px;
+  border-radius: 3px;
+  background-color: #ad4139;
+} */
+
+.chip {
+  display: inline-block;
+  padding: 0 10px 0px 25px;
+  height: 37px;
+  font-size: 16px;
+  line-height: 40px;
+  border-radius: 3px;
+  /* background-color: #ad4139; */
+}
+
+.chip i {
+  float: left;
+  margin: 0 -10px 0 -25px;
+  /* height: 50px; */
+  width: 50px;
+  /* border-radius: 50%; */
+}
+
+.avatar{
+  height: 40px;
+  /* width: 40px; */
+  border-radius: 50px;
+  /* border: 1px solid #3d683c; */
+}
+
+.fa-home{
+  font-size: 39px;
+  /* color: #ad4139; */
+  color: #01635e;
+}
+.fa-user{
+  font-size: 37px;
+  /* color: #5b798e; */
+  /* color: #ff0393;Magenta */
+  color: #01635e;
+}
+.fa-bars{
+  font-size: 39px;
+  /* color: #ad4139; */
+  color: #f28e22;
+}
+
+.dropdown .btn {
+  padding: 0px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    /* background-color: #ddddcf; */
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.0);
+    border-radius: .25rem;
+}
+
+
+/* FIN BARRA NAV MOBILE*/
+
+/* SECCION FOTOS MOBILE*/
+
+.section_onBoarding{
+  max-width: 760px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  top: 160px;
+}
+
+#carouselExampleIndicators{
+  margin-right: 5px;
+}
+
+.main{
+  max-width: 760px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  top: 160px;
+  /* seteo para corregir hamburguesa */
+  /* z-index: 500; */
+}
+
+.product {
+  width: 100%;
+  display: flex;
+  border-radius: 3%;
+  margin: 5px;
+  /* seteo para corregir hamburguesa */
+
+  /* z-index: 500; */
+}
+
+.product:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* colores cajas */
+.product:nth-child(4n+1){
+  /* background-color: #ad4139; */
+  background-color: #f28e22;
+}
+.product:nth-child(4n+2){
+  /* background-color: #5b798e; */
+  background-color: #1b4e6d;
+}
+.product:nth-child(4n+3){
+  /* background-color: #9a8554; */
+  background-color: #ff0393;
+}
+.product:nth-child(4n+4) {
+  /* background-color: #5b798e; */
+  background-color: #1b4e6d;
+}
+
+.product.onBoarding {
+  /* background-color: #49643d;
+  border: 2px solid #49643d; */
+  background-color: #01635e;
+  border: 2px solid #01635e;
+}
+
+.product.onBoarding.desktop {
+  display: none;
+}
+
+.product.onBoarding.tablet {
+  display: none;
+}
+
+.odio {
+  display: flex;
+}
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* inversión fotos */
+.product:nth-child(even) .odio{
+  flex-direction: row-reverse;
+}
+
+.photo{
+  width: 50%;
+  height: 100%;
+  /* no se puede setear el height con porcentaje???? */
+  /* para corregir la hamburguesa */
+  /* position: relative;
+  z-index: 500; */
+
+}
+
+/* borde redondeado alternado */
+.product:nth-child(odd) .photo{
+  border-top-left-radius: 3%;
+  border-bottom-left-radius: 3%;
+}
+.product:nth-child(even) .photo{
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+}
+
+.texto{
+  margin: 15px;
+  overflow: hidden;
+  /* corregir hamburguesa  */
+  /* z-index: 500; */
+}
+
+
+ h3, h2{
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.onBoarding_h2{
+  /* color: #ddddcf; */
+  color: #ffffff;
+  text-align: center;
+
+}
+
+
+/* alineacion texto alternado */
+.product:nth-child(odd) .texto{
+ text-align: left;
+}
+.product:nth-child(even) .texto{
+  text-align: right;
+}
+/* FIN SECCION FOTOS MOBILE*/
+
+
+/* QUE ES GREENDR MOBILE */
+.contenedor_boarding{
+  /* background-color: #5b798e; */
+  background-color: #01635e;
+  border-radius: 3px;
+  width: 470px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-top: 160px;
+}
+
+.h3_boarding{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.texto_boarding{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.p_boarding{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.links_boarding{
+display: flex;
+/* flex-wrap: nowrap; */
+flex-direction: column;
+align-items: center;
+}
+
+.button_boarding{
+  background-color: #f28e22;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* FIN QUE ES GREENDR MOBILE */
+
+
+/* REGISTRO MOBILE*/
+
+.contenedor_registro{
+  /* background-color: #5b798e; */
+  background-color: #01635e;
+  border-radius: 3px;
+  width: 470px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-top: 160px;
+}
+
+.h3_registro{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.items_registro{
+display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+align-items: center;
+}
+
+.label_registro{
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.input_registro{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+}
+
+/* .label_registro_avatar{
+  background-color: #ddddcf;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+} */
+.input_registro_avatar{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  padding-top: 5px;
+  /* display: none; */
+}
+
+.enviar_registro{
+  /* background-color: #ad4139; */
+  background-color: #f28e22;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
+.enviar_registro p{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 8px;
+}
+
+.error_registro{
+  font-size: 1rem;
+  font-style: italic;
+  /* color: #ddddcf; */
+  color: #ffffff;
+}
+
+.p_registro{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.button_registro_loguear{
+  background-color: #ff0393;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* FIN REGISTRO MOBILE*/
+
+
+/* LOGIN MOBILE*/
+.contenedor_login{
+  /* background-color: #5b798e; */
+  background-color: #01635e;
+  border-radius: 3px;
+  width: 470px;
+  /* p21:
+  max-width: 760px; */
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-top: 160px;
+}
+
+.h3_login{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.items_login{
+display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+align-items: center;
+}
+
+.label_login{
+  margin-bottom: 10px;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.input_login{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+}
+
+.radio_items_login{
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.radio2_input_login, .radio1_input_login{
+  margin-left: 5px;
+}
+
+.label_login_radio{
+  margin-left: 35px;
+}
+
+.enviar_login{
+  /* background-color: #ad4139; */
+  background-color: #f28e22;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.enviar_login p{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 8px;
+}
+
+.error_login{
+  font-size: 1rem;
+  font-style: italic;
+  /* color: #ddddcf; */
+  color: #ffffff;
+  text-align: center;
+}
+
+.p_login{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+.button_registro_login{
+  background-color: #ff0393;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+
+/* FIN LOGIN MOBILE*/
+
+
+/* CONTROL PANEL MOBILE */
+.contenedor_cpanel{
+  /* background-color: #5b798e; */
+  background-color: #01635e;
+  border-radius: 3px;
+  width: 470px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-top: 160px;
+}
+
+.h3_cpanel{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+/* .texto_boarding{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+} */
+
+.p_cpanel{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+/* .links_boarding{
+display: flex;
+flex-direction: column;
+align-items: center;
+} */
+
+.button_cpanel{
+  background-color: #f28e22;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* FIN CONTROL PANEL MOBILE */
+
+
+
+
+
+
+/* PERFIL MOBILE*/
+
+.contenedor_perfil{
+  /* background-color: #5b798e; */
+  background-color: #01635e;
+  border-radius: 3px;
+  width: 470px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-top: 160px;
+}
+
+.h3_perfil{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.h3_nombre_perfil{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.avatar_perfil{
+  width: 60px;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.nombre_perfil{
+  display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.items_perfil{
+display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+align-items: center;
+}
+
+.label_perfil{
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.input_perfil{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+}
+
+/* .label_registro_avatar{
+  background-color: #ddddcf;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+} */
+.input_perfil_avatar{
+  /* background-color: #ddddcf; */
+  background-color: #ffffff;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  padding-top: 5px;
+  /* display: none; */
+}
+
+.enviar_perfil{
+  /* background-color: #ad4139; */
+  background-color: #f28e22;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.enviar_perfil p{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 8px;
+}
+
+.error_perfil{
+  font-size: 1rem;
+  font-style: italic;
+  /* color: #ddddcf; */
+  color: #ffffff;
+}
+
+.p_perfil{
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  width: 300px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.descartar_perfil{
+  background-color: #ff0393;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+
+/* .volver_perfil{
+  background-color: #3d683c;
+  border-radius: 3px;
+  border-width: 0px;
+  width: 382px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+} */
+
+/* FIN PERFIL MOBILE*/
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (min-width:768px) {
+
+  /* BARRA NAV TABLET*/
+  .contenedor_nav{
+    /* width: 758px; */
+    max-width: 990px;
+    width: 100%;
+
+  }
+
+nav{
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.buscador_container{
+  margin-bottom: 0px;
+}
+
+.input_nav{
+  /* width: 350px; */
+  width: 90%;
+}
+
+.iconos-container{
+  margin-top: 0px;
+}
+
+.chip{
+  /* padding: 0 5px 0px 10px; */
+}
+
+  /* FIN BARRA NAV TABLET*/
+
+
+  /* SECCION FOTOS TABLET*/
+
+  .section_onBoarding{
+    max-width: 990px;
+  }
+
+  .main{
+    max-width: 990px;
+    /* seteos para corregir hamburguesa */
+    /* position: relative;
+    z-index: 500; */
+  }
+
+  .product.onBoarding.tablet {
+    display: block;
+  }
+
+  #carouselExampleIndicators{
+    display: none;
+  }
+
+  .product.onBoarding.desktop {
+    display: none;
+  }
+
+  .product {
+    width: 47.29%;
+    display: flex;
+    border-radius: 3%;
+    margin: 5px;
+    /* margin: 1.35%; */
+  }
+
+/* inversión fotos */
+  .product:nth-child(4n+1) .odio{
+    flex-direction: row;
+  }
+  .product:nth-child(4n+2) .odio{
+    flex-direction: row;
+  }
+  .product:nth-child(4n+3) .odio{
+    flex-direction: row-reverse;
+  }
+  .product:nth-child(4n+4) .odio{
+    flex-direction: row-reverse;
+  }
+  /* borde redondeado alternado */
+  .product:nth-child(4n+1) .photo{
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .product:nth-child(4n+2) .photo{
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .product:nth-child(4n+3) .photo{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+  }
+  .product:nth-child(4n+4) .photo{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+  }
+  /* alineacion texto alternado */
+  .product:nth-child(4n+1) .texto{
+   text-align: left;
+  }
+  .product:nth-child(4n+2) .texto{
+   text-align: left;
+  }
+  .product:nth-child(4n+3) .texto{
+    text-align: right;
+  }
+  .product:nth-child(4n+4) .texto{
+    text-align: right;
+  }
+/* FIN SECCION FOTOS TABLET*/
+
+
+/* QUE ES GREENDR TABLET */
+.contenedor_boarding{
+  width: 758px;
+}
+
+/* FIN QUE ES GREENDR TABLET */
+
+
+/* REGISTRO TABLET*/
+.contenedor_registro{
+  width: 758px;
+}
+
+.form_registro{
+  width: 748px;
+  margin: auto;
+}
+
+.items_registro {
+  display: block;
+  text-align: right;
+}
+
+.enviar_registro {
+    width: 735px;
+    margin-top: 5px;
+  }
+
+.p_registro{
+    text-align: center;
+  }
+
+.button_registro_loguear {
+      width: 735px;
+      margin-top: 5px;
+    }
+
+/* FIN REGISTRO TABLET*/
+
+/* LOGIN TABLET*/
+.contenedor_login{
+  width: 758px;
+  /* p21:
+  max-width: 990px; */
+}
+
+.form_login{
+  /* width: 748px; */
+  width: 630px;
+  margin: auto;
+}
+
+.items_login {
+  display: block;
+  text-align: right;
+}
+
+.enviar_login {
+    /* width: 735px; */
+    width: 630px;
+    margin-top: 5px;
+  }
+
+.p_login{
+  text-align: center;
+}
+
+.button_registro_login{
+  width: 630px;
+}
+
+/* FIN LOGIN TABLET*/
+
+
+/* PERFIL TABLET*/
+.contenedor_perfil{
+  width: 758px;
+}
+
+.form_perfil{
+  width: 748px;
+  margin: auto;
+}
+
+.items_perfil {
+  display: block;
+  text-align: right;
+}
+
+.enviar_perfil {
+    width: 735px;
+    margin-top: 5px;
+  }
+
+.p_perfil{
+    text-align: center;
+    width: 735px;
+    margin-bottom: 10px;
+  }
+
+.descartar_perfil {
+      width: 735px;
+      margin-top: 30px;
+    }
+
+
+/* FIN PERFIL TABLET*/
+
+}
+
+
+
+
+
+@media (min-width:992px) {
+
+
+/* display: flex;
+justify-content: flex-start; */
+
+  /* BARRA NAV DESKTOP*/
+
+  .contenedor_nav{
+    /* padding-bottom: 15px; */
+    padding-bottom: 5px;
+    /* margin: auto;
+    top: 0; */
+    left: 0;
+    right: 0;
+    top: 0;
+    /* width: 1180px;
+    width: 100%; */
+    max-width: 1180px;
+    margin: auto;
+  }
+
+  .logotipo{
+    display: block;
+    /* width: 100%; */
+    width: 475px;
+    margin: 0;
+    padding: 10px;
+    /* corregir hamburguesa */
+    /* float: left;
+    display: inline-block; */
+    /* fin corregir hamburguesa */
+  }
+
+  .logo{
+    width: 57.53%;
+  }
+  /* .logo, .logotipo{
+    width: 475px;
+    margin: 0;
+  }
+  .logotipo{
+    padding-top: 25px;
+  } */
+  .logotipo2{
+    display: none;
+  }
+
+  nav{
+    margin-top: 60px;
+    /* otra opcion es ponerle al contenedor_nav align-items: flex-end; */
+  }
+  /* FIN BARRA NAV DESKTOP*/
+
+
+/* SECCION FOTOS DESKTOP*/
+.section_onBoarding{
+  max-width: 1180px;
+  top: 150px;
+}
+
+  .main{
+    max-width: 1180px;
+    top: 150px;
+  }
+
+  .product {
+    width: 31.66%;
+    /* width: 29.66%; */
+    /* width: 350px; */
+    /* height: 175px; */
+    display: flex;
+    border-radius: 3%;
+    margin: 5px;
+  }
+
+  #carouselExampleIndicators{
+    display: none;
+  }
+
+  .product.onBoarding.tablet {
+    display: none;
+  }
+
+  .product.onBoarding.desktop {
+    display: block;
+  }
+
+/* inversión fotos */
+  .product:nth-child(6n+1) .odio{
+    flex-direction: row;
+  }
+  .product:nth-child(6n+2) .odio{
+    flex-direction: row;
+  }
+  .product:nth-child(6n+3) .odio{
+    flex-direction: row;
+  }
+  .product:nth-child(6n+4) .odio{
+    flex-direction: row-reverse;
+  }
+  .product:nth-child(6n+5) .odio{
+    flex-direction: row-reverse;
+  }
+  .product:nth-child(6n+6) .odio{
+    flex-direction: row-reverse;
+  }
+  /* borde redondeado alternado */
+  .product:nth-child(6n+1) .photo{
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .product:nth-child(6n+2) .photo{
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .product:nth-child(6n+3) .photo{
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .product:nth-child(6n+4) .photo{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+  }
+  .product:nth-child(6n+5) .photo{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+  }
+  .product:nth-child(6n+6) .photo{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+  }
+  /* alineacion texto alternado */
+  .product:nth-child(6n+1) .texto{
+   text-align: left;
+  }
+  .product:nth-child(6n+2) .texto{
+   text-align: left;
+  }
+  .product:nth-child(6n+3) .texto{
+   text-align: left;
+  }
+  .product:nth-child(6n+4) .texto{
+    text-align: right;
+  }
+  .product:nth-child(6n+5) .texto{
+    text-align: right;
+  }
+  .product:nth-child(6n+6) .texto{
+    text-align: right;
+  }
+/* FIN SECCION FOTOS DESKTOP*/
+
+
+/* QUE ES GREENDR DESKTOP */
+.contenedor_boarding{
+  width: 1180px;
+  top: 150px;
+}
+
+.links_boarding{
+display: flex;
+flex-wrap: nowrap;
+flex-direction: row;
+align-items: center;
+justify-content: space-around;
+}
+
+/* FIN QUE ES GREENDR DESKTOP */
+
+
+/* REGISTRO DESKTOP*/
+.contenedor_registro{
+  width: 1180px;
+  top: 150px;
+}
+
+.form_registro{
+  width: 735px;
+  margin: auto;
+}
+
+.items_registro {
+  display: block;
+  text-align: right;
+}
+
+.p_registro{
+  text-align: center;
+}
+
+.enviar_registro {
+    width: 735px;
+    margin-top: 5px;
+  }
+
+.button_registro_loguear{
+width: 735px;
+}
+/* FIN REGISTRO DESKTOP*/
+
+
+/* LOGIN DESKTOP*/
+.contenedor_login{
+  width: 1180px;
+  top: 150px;
+  /* p21:
+  max-width: 1180px; */
+}
+
+.form_login{
+  width: 735px;
+  margin: auto;
+}
+
+.items_login {
+  display: block;
+  text-align: right;
+}
+
+.enviar_login {
+    width: 735px;
+    margin-top: 5px;
+  }
+
+.button_registro_login{
+    width: 735px;
+  }
+
+/* FIN LOGIN DESKTOP*/
+
+
+/* PERFIL DESKTOP*/
+.contenedor_perfil{
+  width: 1180px;
+  top: 150px;
+}
+
+.form_perfil{
+  width: 735px;
+  margin: auto;
+}
+
+.items_perfil {
+  display: block;
+  text-align: right;
+}
+
+.p_perfil{
+  width: 735px;
+  margin-bottom: 10px;
+}
+
+.enviar_perfil {
+    width: 735px;
+    margin-top: 5px;
+  }
+
+.descartar_perfil{
+width: 735px;
+}
+
+/* FIN PERFIL DESKTOP*/
+
+}
