@@ -1,7 +1,16 @@
 Greendr es una red social para intercambiar plantas y productos de jardinería.
 
-Avances del Sprint 3:
+Avances del Sprint 2:
 
+- Los datos del usuario de pueden modificar (función modificarUsuario y guardarUsuarioModificado).
+- Si el usuario no elige una foto de avatar, se asigna una de manera aleatoria.
+- Las funciones recordarme y dejar de recordame permiten guardar más de un usuario en la misma computadora, o dejar de recordar el usuario.
+- Se mantiene iniciada la última sesión aunque se cierre el navegador.
+- El menú desplegable está funcionando.
+
+
+
+Avances del Sprint 3:
 
 - Las funciones que miraban a json, ahora utilizan la base de datos.
 - Se entrega base de datos (el archivo se llama greendr_db.sql y se encuentra guardado en la carpeta DB).
