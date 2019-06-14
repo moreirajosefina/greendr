@@ -20,18 +20,16 @@
 
 <!-- ICONOS -->
 
-  <?php if(usuarioLogueado()):?>
-    <?php $usuario = traerUsuarioLogueado(); ?>
+  <?php if($auth->usuarioLogueado()):?>
+    <?php $usuario = $dbAll->traerUsuarioLogueado(); ?>
     <div class="iconos-container">
 
       <a class="iconos" href="index.php"><i class="fas fa-home"></i></a>
 
-      <!-- <a class="iconos" href= "perfil.php"> <img src="<?=$usuario["avatar"]?>" class="avatar" alt="avatar"> <p class=""><?=$usuario["user"]?></p> </a> -->
-
       <div class="chip">
-        <a href="perfil.php">
-        <img src="<?=$usuario["avatar"]?>" class="avatar" alt="avatar">
-        <?=$usuario["user"]?>
+        <a href="control_panel.php">
+        <img src="<?=$usuario->getAvatar() ?>" class="avatar" alt="avatar">
+        <?=$usuario->getUser()?>
         </a>
       </div>
 
@@ -46,11 +44,16 @@
         </button>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button"> <a href="perfil.php">Mi cuenta</a> </button>
-          <button class="dropdown-item" type="button"> <a href="#">Subir ítem</a> </button>
+          <button class="dropdown-item" type="button"> <a href="formulario_subida.php">SUBIR PLANTA*</a> </button>
+
+          <button class="dropdown-item" type="button"> <a href="control_panel.php">Mi cuenta</a> </button>
+
           <button class="dropdown-item" type="button"> <a href="#">Recomendaciones</a></button>
+
           <button class="dropdown-item" type="button"> <a href="que_es_como_funciona.php">Preguntas frecuentes</a></button>
+
           <button class="dropdown-item" type="button"> <a href="#">Contacto</a></button>
+
           <button class="dropdown-item" type="button"> <a href="logout.php">Cerrar sesión</a></button>
         </div>
 

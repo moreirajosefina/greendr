@@ -1,15 +1,16 @@
 <?php
 $titulo= "GREENDR - Perfil";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
-if(!usuarioLogueado()){
+if(!$auth->usuarioLogueado()){
   header("Location:index.php");
   exit;
 }
 
 // variables para persistencia:
-$nombreCompletoOut = "";
+$nombreOut = "";
 $emailOut = "";
 
 
@@ -19,7 +20,7 @@ if($_POST){
   // erroresOUT son solo errores, NO DATOS
 
 // variables para persistencia:
-  $nombreCompletoOut = trim($_POST["nombreCompleto"]);
+  $nombreOut = trim($_POST["nombre"]);
   $emailOut = trim($_POST["email"]);
 
 
@@ -41,7 +42,7 @@ if($_POST){
       move_uploaded_file($_FILES["avatar"]["tmp_name"], "archivos/". $usuarioModificado["user"]. "." .$ext);
     }
 
-    header("Location:index.php");
+    header("Location:control_panel.php");
     exit;
   }
 
@@ -66,7 +67,7 @@ if($_POST){
 
 <h3 class="h3_perfil">MIS DATOS</h3>
 
-<?php $usuario = traerUsuarioLogueado() ?>
+<?php $usuario = $dbAll->traerUsuarioLogueado() ?>
 
 <div class="nombre_perfil">
 <h3 class="h3_nombre_perfil"><?="Nombre de usuario: ". $usuario["user"]?></h3>
@@ -79,17 +80,17 @@ if($_POST){
   <div class="items_perfil">
         <label class="label_perfil" for="nombre">Nombre y apellido: </label>
 
-        <input class="input_perfil" type="text" id="nombre" name="nombreCompleto" placeholder="Los otros usuarios no verán esta información"
-        <?php if(isset($erroresOut["nombreCompleto"])): ?>
-          value= "<?=$nombreCompletoOut=""?>"
-        <?php elseif(!isset($erroresOut["nombreCompleto"]) && isset($_POST["nombreCompleto"])): ?>
-          value= "<?=$nombreCompletoOut?>"
+        <input class="input_perfil" type="text" id="nombre" name="nombre" placeholder="Los otros usuarios no verán esta información"
+        <?php if(isset($erroresOut["nombre"])): ?>
+          value= "<?=$nombreOut=""?>"
+        <?php elseif(!isset($erroresOut["nombre"]) && isset($_POST["nombre"])): ?>
+          value= "<?=$nombreOut?>"
         <?php else:  ?>
           value= "<?=$usuario["nombre"]?>"
        <?php endif; ?>
       >
         <p class="error_perfil">
-        <?php if(isset($erroresOut["nombreCompleto"])){echo $erroresOut["nombreCompleto"]; } ?>
+        <?php if(isset($erroresOut["nombre"])){echo $erroresOut["nombre"]; } ?>
         </p>
   </div>
 
@@ -152,7 +153,7 @@ if($_POST){
 
   <div class="items_perfil">
   <button class="descartar_perfil" type="button" name="button">
-  <a href="index.php">DESCARTAR CAMBIOS</a>
+  <a href="control_panel.php">DESCARTAR CAMBIOS</a>
   </button>
   </div>
 

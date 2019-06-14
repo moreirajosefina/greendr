@@ -1,9 +1,10 @@
 <?php
 $titulo= "GREENDR - Login";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
-if(usuarioLogueado()){
+if($auth->usuarioLogueado()){
   header("Location:index.php");
   exit;
 }
@@ -13,7 +14,7 @@ $logUserOut = "";
 // $logPassOut = "";
 
 if ($_POST){
-  $erroresOut = validarLogin($_POST);
+  $erroresOut = Validador::validarLogin($_POST);
   // variables para persistencia:
   $logUserOut = trim($_POST["logUser"]);
 
@@ -48,13 +49,13 @@ if ($_POST){
 
 if(empty($erroresOut)){
 
-  loguearUsuario($_POST["logUser"]);
+  $auth->loguearUsuario($_POST["logUser"]);
 
-  recordarme();
+  $auth->recordarme();
 
-  siguienteSession ($_POST["logUser"]);
+  $auth->siguienteSession ($_POST["logUser"]);
 
-  dejarDeRecordarme ();
+  $auth->dejarDeRecordarme ();
 
   header("Location:index.php");
   exit;

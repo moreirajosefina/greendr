@@ -2,9 +2,10 @@
 
 $titulo= "GREENDR - Registro";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
-if(usuarioLogueado()){
+if($auth->usuarioLogueado()){
   header("Location:index.php");
   exit;
 }
@@ -44,17 +45,17 @@ if(usuarioLogueado()){
 
 
 // variables para persistencia:
-$nombreCompletoOut = "";
+$nombreOut = "";
 $emailOut = "";
 $userOut = "";
 
 if($_POST){
 
-  $erroresOut = validar($_POST);
+  $erroresOut = Validador::validar($_POST);
   // erroresOUT son solo errores, NO DATOS
 
 // variables para persistencia:
-  $nombreCompletoOut = trim($_POST["nombreCompleto"]);
+  $nombreOut = trim($_POST["nombre"]);
   $emailOut = trim($_POST["email"]);
   $userOut = trim($_POST["user"]);
 
@@ -64,8 +65,12 @@ if($_POST){
 // fin debug
 
   if(empty($erroresOut)){
-      $usuario = armarUsuario();
-      guardarUsuario($usuario);
+      // $usuario = armarUsuario();
+      $usuario = new Usuario ($_POST);
+
+      // guardarUsuario($usuario);
+      $dbAll->guardarUsuario($usuario);
+
       //subir imagen;
       if ($_FILES["avatar"]["error"] == 4){
         $avatarSinFoto = rand (1,3);
@@ -76,7 +81,8 @@ if($_POST){
       move_uploaded_file($_FILES["avatar"]["tmp_name"], "archivos/". trim($_POST["user"]). "." .$ext);
     }
 
-    loguearUsuario($_POST["user"]);
+    // loguearUsuario($_POST["user"]);
+    $auth->loguearUsuario($_POST["user"]);
 
     // recordarme();
     // no puede recordar porque el usuario todavía no existe para traerlo en la función
@@ -107,10 +113,10 @@ if($_POST){
   <div class="items_registro">
         <label class="label_registro" for="nombre">Nombre y apellido: </label>
 
-        <input class="input_registro" type="text" id="nombre" name="nombreCompleto" placeholder="Los otros usuarios no verán esta información" value="<?php if(isset($erroresOut["nombreCompleto"])){$nombreCompletoOut="";}else{echo $nombreCompletoOut;}?>">
+        <input class="input_registro" type="text" id="nombre" name="nombre" placeholder="Los otros usuarios no verán esta información" value="<?php if(isset($erroresOut["nombre"])){$nombreOut="";}else{echo $nombreOut;}?>">
 
         <p class="error_registro">
-        <?php if(isset($erroresOut["nombreCompleto"])){echo $erroresOut["nombreCompleto"]; } ?>
+        <?php if(isset($erroresOut["nombre"])){echo $erroresOut["nombre"]; } ?>
         </p>
   </div>
 

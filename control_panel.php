@@ -1,9 +1,10 @@
 <?php
 $titulo= "GREENDR - Panel de control";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
-if(!usuarioLogueado()){
+if(!$auth->usuarioLogueado()){
   header("Location:index.php");
   exit;
 }
@@ -23,93 +24,156 @@ if(!usuarioLogueado()){
 
 <h3 class="h3_cpanel">PANEL DE CONTROL</h3>
 
-<?php $usuario = traerUsuarioLogueado() ?>
+<?php $usuario = $dbAll->traerUsuarioLogueado() ?>
 
-<div class="nombre_perfil_cpanel">
-<h3 class="h2_cpanel"><?=$usuario["user"]?></h3>
+<!-- <div class="nombre_perfil_cpanel">
+<h2 class="h2_cpanel"><?=$usuario["user"]?></h2>
 <img class="avatar_perfil_cpanel" src="<?=$usuario["avatar"]?>" alt="avatar">
-</div>
+</div> -->
 
-<div class="plantas_cpanel">
+<!-- <div class="plantas_cpanel"> -->
 
+<div class="subir_plantas_cpanel">
 <a href="formulario_subida.php">
-<button class="button_cpanel" type="button">
+<button class="subir button_cpanel" type="button">
 SUBIR PLANTA*
 </button>
 </a>
-<p class="p_cpanel"><i>  *Planta, esqueje, semillas, producto o servicio de jardinería. </i></p>
+<p class="p_cpanel"><i>  *Planta, esqueje, semillas,<br> producto o servicio de jardinería. </i></p>
+</div>
 
-<a href="editar_items.php">
+<div class="misplantas_cpanel">
+
+<!-- <h2 class="h2_cpanel">MIS PLANTAS</h2> -->
+
+<div class="preview_items">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+          <article id="product_cpanel" class="product onBoarding mobile d-block w-100">
+            <a class="odio onBoarding_a" href="editar_mis_articulos.php">
+              <img class="photo onBoarding_photo" src="media/onboarding/obB.png" alt="planta">
+              <div class="texto onBoarding_texto">
+                <h2 class="onBoarding_h2">MIS PLANTAS</h2>
+              </div>
+            </a>
+          </article>
+      </div>
+
+      <!-- ?php $usuario = traerUsuarioLogueado(); ya está arriba en línea 26 -->
+      <?php
+      $id = $usuario["id"];
+      $plantas = $dbAll->traerPlantas($id);?>
+      <?php foreach ($plantas as $key => $value) : ?>
+
+      <div class="carousel-item">
+        <article id="product_cpanel" class="product d-block w-100">
+        <a class="odio" href="editar_articulo.php?id=<?=$value["id"]?>">
+        <img class="photo" src="<?=$plantas[$key]["imagen1"]?>" alt="planta">
+        <div class="texto">
+        <h3><?=$plantas[$key]["categoria"] ?></h3>
+        <h2><?=$plantas[$key]["nombre"] ?></h2>
+        </div>
+        </a>
+        </article>
+      </div>
+
+      <?php endforeach; ?>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<a href="editar_mis_articulos.php">
 <button class="button_cpanel" type="button">
-MIS ÍTEMS
+    VER TODAS MIS PLANTAS*
 </button>
-</a>
-
-<section class="preview_items">
-
-reemplazar foreach por select limit 3
-      ?php shuffle($articulos) ?>
-
-			?php foreach ($articulos as $key => $value) : ?>
-
-			<article class="product_preview_items">
-    <a class="odio" href="articulo.php">
-    <img class="photo" src="media/imagenes/< ?=$articulos[$key]["imagen"] ?>" alt="planta">
     </a>
-			</article>
+</div>
 
-		?php endforeach; ?>
+<!-- </div> plantas_cpanel -->
 
-		</section>
+<!-- </div> -->
 
-    <a href="editar_items.php">
-    <button class="button_cpanel" type="button">
-    VER TODOS
-    </button>
+<div class="mensajes_cpanel">
+
+<!-- <h2 class="h2_cpanel">MENSAJES</h2> -->
+
+<div class="preview_mensajes_items">
+
+  <article id="product_cpanel" class="product onBoarding mobile d-block w-100">
+    <a class="odio onBoarding_a" href="#">
+      <img class="photo_mensajes" src="media/inbox-fake.png" alt="inbox">
+      <!-- <div class="texto onBoarding_texto">
+        <h2 class="onBoarding_h2">MENSAJES - PROVISORIO</h2>
+      </div> -->
     </a>
+  </article>
+
+  </div>
+
+  <a href="#">
+  <button class="button_cpanel" type="button">
+      VER TODOS LOS MENSAJES
+  </button>
+      </a>
+
+</div>
+
+<div class="wishlist_cpanel">
+
+<!-- <h2 class="h2_cpanel">LAS PLANTAS QUE QUIERO</h2> -->
+
+  <div class="preview_items">
+
+    <article id="product_cpanel" class="product onBoarding mobile d-block w-100">
+      <a class="odio onBoarding_a" href="#">
+        <img class="photo onBoarding_photo" src="media/onboarding/obC.png" alt="obC">
+        <div class="texto onBoarding_texto">
+          <h2 class="onBoarding_h2">LAS PLANTAS* QUE QUIERO - PROVISORIO </h2>
+        </div>
+      </a>
+    </article>
+
+    </div>
+
+      <a href="editar_articulos_guardados.php">
+      <button class="button_cpanel" type="button">
+      VER TODAS LAS PLANTAS QUE QUIERO
+      </button>
+      </a>
 
 </div>
 
 <div class="misdatos_cpanel">
 
   <a href="perfil.php">
-  <button class="button_cpanel" type="button">
+  <button class="perfil_button_cpanel" type="button">
   MIS DATOS
   </button>
   </a>
 
-</div>
+<!-- </div>
 
-<div class="mensajes_cpanel">
+<div class="misdatos_cpanel"> -->
 
-  <p>ACA VA UNA CAJA CON MENSAJES</p>
-
-</div>
-
-<div class="wishlist_cpanel">
-
-  <section class="preview_items">
-
-  reemplazar foreach por select limit 3
-        ?php shuffle($articulos) ?>
-
-  			?php foreach ($articulos as $key => $value) : ?>
-
-  			<article class="product_preview_items">
-      <a class="odio" href="articulo.php">
-      <img class="photo" src="media/imagenes/< ?=$articulos[$key]["imagen"] ?>" alt="planta">
-      </a>
-  			</article>
-
-  		?php endforeach; ?>
-
-  		</section>
-
-      <a href="editar_items_guardados.php">
-      <button class="button_cpanel" type="button">
-      VER TODOS
-      </button>
-      </a>
+  <a href="borrar_cuenta.php">
+  <button class="borrar button_cpanel" type="button">
+  BORRAR CUENTA
+  </button>
+  </a>
 
 </div>
 
@@ -120,3 +184,14 @@ reemplazar foreach por select limit 3
 <?php include("partials/js.php"); ?>
   </body>
 </html>
+
+<!-- pendiente:
+- mejorar líneas punteadas
+- primer slide del carrusel: ver el tema active
+- si queda esta primer slide hay que arreglar el tamaño
+- arreglar también el hover de ese ítem
+- inbox
+- carrusel wishlist (ojo con las clases de bootstrap)
+- acción botón borrar cuenta
+- el botón borrar cuenta queda ahí?
+- si el usuario no tiene plantas, poner algo en que lo diga en la calesita-->
