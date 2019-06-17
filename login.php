@@ -30,21 +30,10 @@ if ($_POST){
   //
   // echo "erroresOUT";
   // var_dump($erroresOut);
+  // echo "$ FILES";
+  // var_dump($_FILES);
   // echo "<br>";
   //
-  // echo "probando traerUsuario";
-  // echo "<br>";
-  // $email_prueba = "pp@gmail.com";
-  // $usuario_prueba = buscarUsuarioPorMailoUser($_POST["logUser"]);
-  // var_dump($usuario_prueba);
-  // echo "<br>";
-  // echo $usuario_prueba["user"];
-  // echo "<br>";
-  // echo "probando existeCookie";
-  // echo "<br>";
-  // existeCookie($_POST["logUser"]);
-  // echo "<br>";
-
 // fin debug
 
 if(empty($erroresOut)){
@@ -106,10 +95,6 @@ if(empty($erroresOut)){
              <input class="input_login" type="password" id="pass" name="logPass" value= ""  >
        </div>
 
-<!-- <div class="radio_items_login">
-<input class="radio1_input_login" type="radio" name="recordarme" value="si"> Recordarme<br>
-<input class="radio2_input_login" type="radio" name="recordarme" value="no"> Dejar de recordarme<br>
-</div> -->
 
 <div class="radio_items_login">
   <label class="label_login" for="rec">Recordarme   </label>

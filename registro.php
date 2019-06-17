@@ -17,30 +17,6 @@ if($auth->usuarioLogueado()){
 // echo "FILES";
 // var_dump($_FILES);
 //
-// $json = file_get_contents("db.json");
-// $array = json_decode($json, true);
-// var_dump ($array);
-// echo "prueba1: ";
-// echo $array["usuarios"][0]["user"];
-// echo "<br>";
-// echo "prueba2: ";
-//
-//                 // "usuarios"    0
-// foreach ($array as $key => $value) {
-//
-//   //            0         "id"
-//   foreach ($value as $value2) {
-//
-//   //              "id"       1
-//     // foreach ($value2 as $value3) {
-//
-// echo $value2["user"];
-// // echo $value3;
-// echo "<br>";
-//
-//     // }
-//   }
-// }
 // fin debug
 
 
@@ -62,11 +38,18 @@ if($_POST){
 // debug
   // echo "erroresOUT";
   // var_dump($erroresOut);
+  // echo "Post";
+  // var_dump($_POST);
+  // echo "Files";
+  // var_dump($_FILES);
+
 // fin debug
 
   if(empty($erroresOut)){
       // $usuario = armarUsuario();
       $usuario = new Usuario ($_POST);
+      // var_dump($usuario);
+      // exit;
 
       // guardarUsuario($usuario);
       $dbAll->guardarUsuario($usuario);

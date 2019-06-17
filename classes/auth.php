@@ -23,7 +23,7 @@ class Auth
     global $dbAll;
     if (isset($_POST["recordarme"]) && $_POST["recordarme"] == "si"){
       $usuario = $dbAll->traerUsuarioLogueado();
-      setcookie($usuario["id"].'[user]', $_POST["logUser"]);
+      setcookie($usuario->getId().'[user]', $_POST["logUser"]);
     }
   }
 
@@ -31,7 +31,7 @@ class Auth
     global $dbAll;
     if (isset($_POST["recordarme"]) && $_POST["recordarme"] == "no"){
       $usuario = $dbAll->traerUsuarioLogueado();
-      setcookie($usuario["id"].'[user]', "", -1);
+      setcookie($usuario->getId().'[user]', "", -1);
       setcookie("ultimoUsuario", "", -1);
     }
   }

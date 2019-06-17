@@ -1,6 +1,6 @@
 <?php
 
-include "classes/usuario.php";
+include "classes/usuario_class.php";
 include "classes/articulo_class.php";
 include "classes/validador.php";
 include "classes/db.php";

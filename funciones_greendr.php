@@ -158,103 +158,103 @@ function nextId(){
 // }
 
 
+// VA A usuario.php COMO PARTE DEL CONSTRUCTOR
+// function modificarUsuario(){
+//   $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+//   $ext= pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+//
+//   if (strlen($_POST["nPass"]) > 0 && $_FILES["avatar"]["error"] == 0 ){
+//   return[
+//   // "id" => $usuario["id"],
+//   "nombre" => trim($_POST["nombreCompleto"]),
+//   "email" => trim($_POST["email"]),
+//   "user" => $usuario["user"],
+//   "pass" => password_hash($_POST["nPass"], PASSWORD_DEFAULT),
+//   "avatar" => "archivos/". $usuario["user"]. "." .$ext,
+//   ];
+// } elseif (strlen($_POST["nPass"]) == 0 && $_FILES["avatar"]["error"] !== 0 ){
+// return[
+//   // "id" => $usuario["id"],
+//   "nombre" => trim($_POST["nombreCompleto"]),
+//   "email" => trim($_POST["email"]),
+//   "user" => $usuario["user"],
+//   "pass" => $usuario["pass"],
+//   "avatar" => $usuario["avatar"],
+//   ];
+// } elseif (strlen($_POST["nPass"]) > 0 && $_FILES["avatar"]["error"] !== 0 ){
+// return[
+//   // "id" => $usuario["id"],
+//   "nombre" => trim($_POST["nombreCompleto"]),
+//   "email" => trim($_POST["email"]),
+//   "user" => $usuario["user"],
+//   "pass" => password_hash($_POST["nPass"], PASSWORD_DEFAULT),
+//   "avatar" => $usuario["avatar"],
+//   ];
+// } elseif (strlen($_POST["nPass"]) == 0 && $_FILES["avatar"]["error"] == 0 ){
+// return[
+//   // "id" => $usuario["id"],
+//   "nombre" => trim($_POST["nombreCompleto"]),
+//   "email" => trim($_POST["email"]),
+//   "user" => $usuario["user"],
+//   "pass" => $usuario["pass"],
+//   "avatar" => "archivos/". $usuario["user"]. "." .$ext,
+//   ];
+// }
+// }
+//
+// // VA PRIMERO A db.php COMO FUNCION ABSTRACTA
+// // Y DESPUES A dbMysql.php con el código de mySql
+// // ARMAR UN dbJson.php con el código de jason
+// // function guardarUsuario($usuario){
+// //   // $json = file_get_contents("db.json");
+// //   // $array = json_decode($json, true);
+// //   //
+// //   // $array["usuarios"][] = $usuario;
+// //   // $array = json_encode($array, JSON_PRETTY_PRINT);
+// //   //
+// //   // file_put_contents("db.json", $array);
+// //
+// // global $db;
+// //
+// // $stmt = $db->prepare("INSERT into usuarios VALUES
+// // (default, :nombre, :email, :usuario, :avatar, :pass, null)");
+// //
+// // $stmt-> bindValue(":nombre", $usuario["nombre"]);
+// // $stmt-> bindValue(":email", $usuario["email"]);
+// // $stmt-> bindValue(":usuario", $usuario["user"]);
+// // $stmt-> bindValue(":avatar", $usuario["avatar"]);
+// // $stmt-> bindValue(":pass", $usuario["pass"]);
+// //
+// // $stmt->execute();
+// // }
 
-function modificarUsuario(){
-  $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
-  $ext= pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-
-  if (strlen($_POST["nPass"]) > 0 && $_FILES["avatar"]["error"] == 0 ){
-  return[
-  // "id" => $usuario["id"],
-  "nombre" => trim($_POST["nombreCompleto"]),
-  "email" => trim($_POST["email"]),
-  "user" => $usuario["user"],
-  "pass" => password_hash($_POST["nPass"], PASSWORD_DEFAULT),
-  "avatar" => "archivos/". $usuario["user"]. "." .$ext,
-  ];
-} elseif (strlen($_POST["nPass"]) == 0 && $_FILES["avatar"]["error"] !== 0 ){
-return[
-  // "id" => $usuario["id"],
-  "nombre" => trim($_POST["nombreCompleto"]),
-  "email" => trim($_POST["email"]),
-  "user" => $usuario["user"],
-  "pass" => $usuario["pass"],
-  "avatar" => $usuario["avatar"],
-  ];
-} elseif (strlen($_POST["nPass"]) > 0 && $_FILES["avatar"]["error"] !== 0 ){
-return[
-  // "id" => $usuario["id"],
-  "nombre" => trim($_POST["nombreCompleto"]),
-  "email" => trim($_POST["email"]),
-  "user" => $usuario["user"],
-  "pass" => password_hash($_POST["nPass"], PASSWORD_DEFAULT),
-  "avatar" => $usuario["avatar"],
-  ];
-} elseif (strlen($_POST["nPass"]) == 0 && $_FILES["avatar"]["error"] == 0 ){
-return[
-  // "id" => $usuario["id"],
-  "nombre" => trim($_POST["nombreCompleto"]),
-  "email" => trim($_POST["email"]),
-  "user" => $usuario["user"],
-  "pass" => $usuario["pass"],
-  "avatar" => "archivos/". $usuario["user"]. "." .$ext,
-  ];
-}
-}
-
-// VA PRIMERO A db.php COMO FUNCION ABSTRACTA
-// Y DESPUES A dbMysql.php con el código de mySql
-// ARMAR UN dbJson.php con el código de jason
-// function guardarUsuario($usuario){
+// VA A dbMysql.php
+// function guardarUsuarioModificado($usuario){
 //   // $json = file_get_contents("db.json");
 //   // $array = json_decode($json, true);
 //   //
-//   // $array["usuarios"][] = $usuario;
+//   // $array["usuarios"][$usuario["id"]-1] = $usuario;
 //   // $array = json_encode($array, JSON_PRETTY_PRINT);
 //   //
 //   // file_put_contents("db.json", $array);
 //
-// global $db;
+//   global $db;
+//   $n_usuario = $usuario["user"];
 //
-// $stmt = $db->prepare("INSERT into usuarios VALUES
-// (default, :nombre, :email, :usuario, :avatar, :pass, null)");
+//   $stmt = $db->prepare("UPDATE usuarios
+//     SET nombre = :nombre,
+//     email = :email,
+//     avatar = :avatar,
+//     pass = :pass
+//     WHERE user = '$n_usuario'");
 //
-// $stmt-> bindValue(":nombre", $usuario["nombre"]);
-// $stmt-> bindValue(":email", $usuario["email"]);
-// $stmt-> bindValue(":usuario", $usuario["user"]);
-// $stmt-> bindValue(":avatar", $usuario["avatar"]);
-// $stmt-> bindValue(":pass", $usuario["pass"]);
+//   $stmt-> bindValue(":nombre", $usuario["nombre"]);
+//   $stmt-> bindValue(":email", $usuario["email"]);
+//   $stmt-> bindValue(":avatar", $usuario["avatar"]);
+//   $stmt-> bindValue(":pass", $usuario["pass"]);
 //
-// $stmt->execute();
+//   $stmt->execute();
 // }
-
-
-function guardarUsuarioModificado($usuario){
-  // $json = file_get_contents("db.json");
-  // $array = json_decode($json, true);
-  //
-  // $array["usuarios"][$usuario["id"]-1] = $usuario;
-  // $array = json_encode($array, JSON_PRETTY_PRINT);
-  //
-  // file_put_contents("db.json", $array);
-
-  global $db;
-  $n_usuario = $usuario["user"];
-
-  $stmt = $db->prepare("UPDATE usuarios
-    SET nombre = :nombre,
-    email = :email,
-    avatar = :avatar,
-    pass = :pass
-    WHERE user = '$n_usuario'");
-
-  $stmt-> bindValue(":nombre", $usuario["nombre"]);
-  $stmt-> bindValue(":email", $usuario["email"]);
-  $stmt-> bindValue(":avatar", $usuario["avatar"]);
-  $stmt-> bindValue(":pass", $usuario["pass"]);
-
-  $stmt->execute();
-}
 
 
 // VA A dbMysql.php
@@ -375,112 +375,112 @@ $usuario = buscarUsuarioPorMailoUser($emailoUser);
 //   }
 // }
 
-
-function validarPerfil($datos){
-// $ datos va a ser igual a $ POST
-// Esta función entrega detalle errores, NO datos
-
-$caracteresOK = [' ', 'ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü'];
-// $caracteresOKuser = ['ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü']; user es el nombre de archivo, no debe tener ñ o acentos
-$errores = [];
-$datosFixed = [];
-
-foreach ($datos as $key => $value) {
-  $datosFixed[$key] = trim($value);
-}
-
-if (strlen($datosFixed["nombreCompleto"]) == 0){
-  $errores["nombreCompleto"]="* El campo 'Nombre y apellido' debe estar completo.";
-} elseif (ctype_alpha(str_replace($caracteresOK,'',  $datosFixed["nombreCompleto"]))  == false){
-  $errores["nombreCompleto"] = "* El nombre y apellido no deben contener caracteres especiales ni números.";
-}
-
-if (strlen($datosFixed["email"]) == 0){
-  $errores["email"]="* El campo E-mail debe estar completo.";
-} elseif (!filter_var($datosFixed["email"], FILTER_VALIDATE_EMAIL)){
-  $errores["email"]="* El e-mail debe ser válido.";
-}
-
-
-if($_FILES["avatar"]["error"] !== 0 && $_FILES["avatar"]["error"] !== 4){
-  $errores["avatar"]["error"] ="* Imagen de perfil: error. Volver a subirla.";
-}
-if ($_FILES["avatar"]["size"] >= 2097152) {
-  $errores["avatar"]["size"]="* El tamaño de la imagen no puede ser superior a 2 MB.";
-}
-$ext = pathinfo($_FILES["avatar"]["name"],PATHINFO_EXTENSION);
-if ($_FILES["avatar"]["error"] == 0 && $ext != "jpg" && $ext != "JPG" && $ext != "jpeg" && $ext != "JPEG" && $ext != "png" && $ext != "PNG") {
-  $errores["avatar"]["type"] = "* La imagen debe ser jpg, jpeg o png.";
-}
-
-if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass"]) < 5) {
-  $errores["nPass"]="* La nueva contraseña debe tener como mínimo 5 caracteres.";
-}
-
-if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass2"]) == 0){
-  $errores["nPass2"]="* Por favor repetir la nueva contraseña.";
-} elseif ($_POST["nPass"] !== $_POST["nPass2"]){
-  $errores["nPass"]="* Las nuevas contraseñas no coinciden.";
-}
-
-if (strlen($_POST["pass"]) == 0){
-  $errores["pass"]="* El campo Contraseña debe estar completo.";
-}
-
-elseif (existeUsuario($_SESSION["usuario"])) {
-  $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
-  if(!password_verify($_POST["pass"], $usuario["pass"])){
-    $errores["pass"]="Contraseña errónea.";
-}
-}
-
-// VALIDAR MAILS YA EXISTENTES:
-
-// $json = file_get_contents("db.json");
-// $array = json_decode($json, true);
+// VA A validador.php
+// function validarPerfil($datos){
+// // $ datos va a ser igual a $ POST
+// // Esta función entrega detalle errores, NO datos
+//
+// $caracteresOK = [' ', 'ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü'];
+// // $caracteresOKuser = ['ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü']; user es el nombre de archivo, no debe tener ñ o acentos
+// $errores = [];
+// $datosFixed = [];
+//
+// foreach ($datos as $key => $value) {
+//   $datosFixed[$key] = trim($value);
+// }
+//
+// if (strlen($datosFixed["nombreCompleto"]) == 0){
+//   $errores["nombreCompleto"]="* El campo 'Nombre y apellido' debe estar completo.";
+// } elseif (ctype_alpha(str_replace($caracteresOK,'',  $datosFixed["nombreCompleto"]))  == false){
+//   $errores["nombreCompleto"] = "* El nombre y apellido no deben contener caracteres especiales ni números.";
+// }
+//
+// if (strlen($datosFixed["email"]) == 0){
+//   $errores["email"]="* El campo E-mail debe estar completo.";
+// } elseif (!filter_var($datosFixed["email"], FILTER_VALIDATE_EMAIL)){
+//   $errores["email"]="* El e-mail debe ser válido.";
+// }
+//
+//
+// if($_FILES["avatar"]["error"] !== 0 && $_FILES["avatar"]["error"] !== 4){
+//   $errores["avatar"]["error"] ="* Imagen de perfil: error. Volver a subirla.";
+// }
+// if ($_FILES["avatar"]["size"] >= 2097152) {
+//   $errores["avatar"]["size"]="* El tamaño de la imagen no puede ser superior a 2 MB.";
+// }
+// $ext = pathinfo($_FILES["avatar"]["name"],PATHINFO_EXTENSION);
+// if ($_FILES["avatar"]["error"] == 0 && $ext != "jpg" && $ext != "JPG" && $ext != "jpeg" && $ext != "JPEG" && $ext != "png" && $ext != "PNG") {
+//   $errores["avatar"]["type"] = "* La imagen debe ser jpg, jpeg o png.";
+// }
+//
+// if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass"]) < 5) {
+//   $errores["nPass"]="* La nueva contraseña debe tener como mínimo 5 caracteres.";
+// }
+//
+// if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass2"]) == 0){
+//   $errores["nPass2"]="* Por favor repetir la nueva contraseña.";
+// } elseif ($_POST["nPass"] !== $_POST["nPass2"]){
+//   $errores["nPass"]="* Las nuevas contraseñas no coinciden.";
+// }
+//
+// if (strlen($_POST["pass"]) == 0){
+//   $errores["pass"]="* El campo Contraseña debe estar completo.";
+// }
+//
+// elseif (existeUsuario($_SESSION["usuario"])) {
+//   $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+//   if(!password_verify($_POST["pass"], $usuario["pass"])){
+//     $errores["pass"]="Contraseña errónea.";
+// }
+// }
+//
+// // VALIDAR MAILS YA EXISTENTES:
+//
+// // $json = file_get_contents("db.json");
+// // $array = json_decode($json, true);
+// //
+// // $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+// //
+// // if($array !== null){
+// // foreach ($array as $key => $value) {
+// //   foreach ($value as $value2) {
+// //
+// //     if ($datosFixed["email"] !== $usuario["email"] && $value2["email"] == $datosFixed["email"]){
+// //       $errores["email"]="* Este e-mail ya se encuentra registrado.";
+// //     }
+// //   }
+// // }
+// // }
 //
 // $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
 //
-// if($array !== null){
-// foreach ($array as $key => $value) {
-//   foreach ($value as $value2) {
+// global $db;
 //
-//     if ($datosFixed["email"] !== $usuario["email"] && $value2["email"] == $datosFixed["email"]){
-//       $errores["email"]="* Este e-mail ya se encuentra registrado.";
-//     }
-//   }
+// $stmt = $db->prepare("SELECT * FROM usuarios WHERE email != :email AND email = :nuevo_email");
+//
+// $newMail = $datosFixed["email"];
+//
+// $stmt-> bindValue(":email", $usuario["email"]);
+// $stmt-> bindValue(":nuevo_email", $newMail);
+//
+// $stmt->execute();
+//
+// $resultado_email = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//
+// if ($resultado_email){
+//   $errores["email"]="* Este e-mail ya se encuentra registrado.";
 // }
+//
+//
+// // debug
+// // echo "errores";
+// // var_dump ($errores);
+// // echo "datosFixed";
+// // var_dump ($datosFixed);
+// // fin debug
+//
+//   return $errores;
 // }
-
-$usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
-
-global $db;
-
-$stmt = $db->prepare("SELECT * FROM usuarios WHERE email != :email AND email = :nuevo_email");
-
-$newMail = $datosFixed["email"];
-
-$stmt-> bindValue(":email", $usuario["email"]);
-$stmt-> bindValue(":nuevo_email", $newMail);
-
-$stmt->execute();
-
-$resultado_email = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if ($resultado_email){
-  $errores["email"]="* Este e-mail ya se encuentra registrado.";
-}
-
-
-// debug
-// echo "errores";
-// var_dump ($errores);
-// echo "datosFixed";
-// var_dump ($datosFixed);
-// fin debug
-
-  return $errores;
-}
 
 // VA A validador.php
 // function validarSubidaArticulo($datos){

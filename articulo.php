@@ -16,13 +16,12 @@ if(!$auth->usuarioLogueado()){
 $idPlanta = $_GET["id"];
 
 $planta = $dbAll->traerUnaPlanta($idPlanta);
+$planta = New Articulo($planta);
 
 // debug:
 // var_dump($planta);
-// echo "nombre de la planta: ";
-// echo $planta["nombre"];
 // fin debug
-$titulo= "GREENDR - " . $planta["nombre"];
+$titulo= "GREENDR - " . $planta->getNombre();
 
  ?>
 
@@ -37,32 +36,32 @@ $titulo= "GREENDR - " . $planta["nombre"];
 
 <div class="contenedor_articulo">
 
-<h3 class="h3_articulo"><?=$planta["nombre"]?></h3>
+<h3 class="h3_articulo"><?=$planta->getNombre()?></h3>
 
 <div class="show_plantas">
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <?php if($planta["imagen2"] != "null"): ?>
+        <?php if($planta->getImagen2() != "null"): ?>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <?php endif; ?>
-      <?php if($planta["imagen3"] != "null"): ?>
+      <?php if($planta->getImagen3() != "null"): ?>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       <?php endif; ?>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="img_articulo" src="<?=$planta["imagen1"]?>" class="d-block w-100" alt="imagen1">
+        <img class="img_articulo" src="<?=$planta->getImagen1()?>" class="d-block w-100" alt="imagen1">
       </div>
-      <?php if($planta["imagen2"] != "null"): ?>
+      <?php if($planta->getImagen2() != "null"): ?>
       <div class="carousel-item">
-        <img class="img_articulo" src="<?=$planta["imagen2"]?>" class="d-block w-100" alt="imagen2">
+        <img class="img_articulo" src="<?=$planta->getImagen2()?>" class="d-block w-100" alt="imagen2">
       </div>
     <?php endif; ?>
-    <?php if($planta["imagen3"] != "null"): ?>
+    <?php if($planta->getImagen3() != "null"): ?>
       <div class="carousel-item">
-        <img class="img_articulo" src="<?=$planta["imagen3"]?>" class="d-block w-100" alt="imagen3">
+        <img class="img_articulo" src="<?=$planta->getImagen3()?>" class="d-block w-100" alt="imagen3">
       </div>
     <?php endif; ?>
     </div>
@@ -77,9 +76,9 @@ $titulo= "GREENDR - " . $planta["nombre"];
   </div>
 
   <div class="items_button2_articulo">
-    <?php if($_SESSION["usuario"] == $planta["user"] || $_SESSION["usuario"] == $planta["email"]): ?>
+    <?php if($_SESSION["usuario"] == $planta->getId_usuario()->getUser() || $_SESSION["usuario"] == $planta->getId_usuario()->getEmail()): ?>
       <button class="button_articulo" type="button" name="button">
-      <a href="editar_articulo.php?id=<?=$planta["id"]?>">EDITAR PLANTA</a>
+      <a href="editar_articulo.php?id=<?=$planta->getId()?>">EDITAR PLANTA</a>
       </button>
     <?php else: ?>
   <button class="button_articulo" type="button" name="button">
@@ -97,35 +96,35 @@ $titulo= "GREENDR - " . $planta["nombre"];
 
 <div class="items_articulo">
   <h4 class="h4_articulo">Nombre científico:</h4>
-  <p class="p_articulo"><?=$planta["n_cientifico"]?></p>
+  <p class="p_articulo"><?=$planta->getNcientifico()?></p>
 </div>
 
 <div class="items_articulo">
   <h4 class="h4_articulo">Categoría:</h4>
-  <p class="p_articulo"><?=$planta["categoria"]?></p>
+  <p class="p_articulo"><?=$planta->getId_categoria()?></p>
 </div>
 
 <div class="items_articulo">
   <h4 class="h4_articulo">Descripción:</h4>
-  <p class="p_articulo"><?=$planta["descripcion"]?></p>
+  <p class="p_articulo"><?=$planta->getDescripcion()?></p>
 </div>
 
 <div class="items_articulo">
   <h4 class="h4_articulo">Punto de intercambio:</h4>
-  <p class="p_articulo"><?=$planta["id_punto"]?></p>
+  <p class="p_articulo"><?=$planta->getId_punto()?></p>
 </div>
 
 <div class="items_articulo">
     <h4 class="h4_articulo">Usuario:</h4>
-    <?php if($_SESSION["usuario"] == $planta["user"] || $_SESSION["usuario"] == $planta["email"]): ?>
+    <?php if($_SESSION["usuario"] == $planta->getId_usuario()->getUser() || $_SESSION["usuario"] == $planta->getId_usuario()->getUser()): ?>
   <a class="a_articulo" href="editar_mis_articulos.php">
-  <img class="avatar_perfil_cpanel" src="<?=$planta["avatar"]?>" alt="avatar">
-  <p class="p_usuario_articulo"><?=$planta["user"]?></p>
+  <img class="avatar_perfil_cpanel" src="<?=$planta->getId_usuario()->getAvatar()?>" alt="avatar">
+  <p class="p_usuario_articulo"><?=$planta->getId_usuario()->getUser()?></p>
   </a>
     <?php else: ?>
-  <a class="a_articulo" href="usuario.php?id=<?=$planta["id_usuario"]?>">
-    <img class="avatar_perfil_cpanel" src="<?=$planta["avatar"]?>" alt="avatar">
-    <p class="p_usuario_articulo"><?=$planta["user"]?></p>
+  <a class="a_articulo" href="usuario.php?id=<?=$planta->getId_usuario()->getId()?>">
+    <img class="avatar_perfil_cpanel" src="<?=$planta->getId_usuario()->getAvatar()?>" alt="avatar">
+    <p class="p_usuario_articulo"><?=$planta->getId_usuario()->getUser()?></p>
   </a>
   <?php endif; ?>
 </div>
@@ -133,9 +132,9 @@ $titulo= "GREENDR - " . $planta["nombre"];
 </div>
 
 <div class="items_button1_articulo">
-  <?php if($_SESSION["usuario"] == $planta["user"] || $_SESSION["usuario"] == $planta["email"]): ?>
+  <?php if($_SESSION["usuario"] == $planta->getId_usuario()->getUser() || $_SESSION["usuario"] == $planta->getId_usuario()->getEmail()): ?>
     <button class="button_articulo" type="button" name="button">
-    <a href="editar_articulo.php?id=<?=$planta["id"]?>">EDITAR PLANTA</a>
+    <a href="editar_articulo.php?id=<?=$planta->getId()?>">EDITAR PLANTA</a>
     </button>
   <?php else: ?>
 <button class="button_articulo" type="button" name="button">

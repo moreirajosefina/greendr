@@ -81,62 +81,6 @@ if ($_FILES["avatar"]["error"] == 0 && $ext != "jpg" && $ext != "JPG" && $ext !=
 // }
 
 
-// global $db;
-
-// chau global $db
-// si en registro.php está incluido el init.php
-// y el init.php tiene adentro $dbAll = new DbMysql
-// entonces está trayendo $this->connection CUALQUIERAAAAAJJAJAAJJAJAJAJAJAJJAJAJAJBUUUUUAAAAAAAAA
-
-// FUE COMO FUNCION A dbMysql.php
-// public function existeMail($email)
-// global $dbAll;
-//
-// $stmt = $dbAll->prepare("SELECT * FROM usuarios WHERE email=:email");
-//
-// $email = $datosFixed["email"];
-//
-// $stmt-> bindValue(":email", $email);
-//
-// $stmt->execute();
-// $resultado_email = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-// if ($resultado_email){
-//   $errores["email"]="* Este e-mail ya se encuentra registrado.";
-// }
-
-// var_dump($resultado_email);
-// exit;
-
-// FUE COMO FUNCION A dbMysql.php
-// public function existeUsuario($usuario)
-// $stmt = $dbAll->prepare("SELECT * FROM usuarios WHERE user=:usuario");
-//
-// $usuario = $datosFixed["user"];
-//
-// $stmt-> bindValue(":usuario", $usuario);
-//
-// $stmt->execute();
-// $resultado_user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-// if ($resultado_user){
-//   $errores["user"]="* Nombre de usuario no disponible.";
-// }
-
-// var_dump($resultado_user);
-// exit;
-
-// global $dbAll;
-//
-// if ($dbAll->existeMail($datosFixed["email"])){
-//   $errores["email"]="* Este e-mail ya se encuentra registrado.";
-// }
-
-// if ($dbAll->existeUsuario($datosFixed["user"])){
-//   $errores["user"]="* Nombre de usuario no disponible.";
-// }
-
-
 // debug
 // echo "errores";
 // var_dump ($errores);
@@ -162,7 +106,7 @@ if (strlen(trim($datos["logUser"])) == 0 || strlen($datos["logPass"]) == 0){
 $errores["logUser"]="* Nombre de usuario, e-mail o contraseña errónea.";
 } elseif ($dbAll->existeUsuario($datos["logUser"])) {
   $usuario = $dbAll-> buscarUsuarioPorMailoUser($datos["logUser"]);
-  if(!password_verify($datos["logPass"], $usuario["pass"])){
+  if(!password_verify($datos["logPass"], $usuario->getPass())){
     $errores["logUser"]="* Nombre de usuario, e-mail o contraseña errónea.";
 }
 }
@@ -173,6 +117,101 @@ $errores["logUser"]="* Nombre de usuario, e-mail o contraseña errónea.";
 
 return $errores;
 }
+
+
+public static function validarPerfil($datos){
+// VALIDA LOS DATOS INGRESADOS EN EL FORMULARIO DE MODIFICACION DE MIS DATOS
+// $ datos va a ser igual a $ POST
+// Esta función entrega detalle errores, NO datos
+
+global $dbAll;
+
+$usuario = $dbAll-> buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+
+$caracteresOK = [' ', 'ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü'];
+// $caracteresOKuser = ['ñ', 'Ñ', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'ü', 'Ü']; user es el nombre de archivo, no debe tener ñ o acentos
+$errores = [];
+$datosFixed = [];
+
+foreach ($datos as $key => $value) {
+  $datosFixed[$key] = trim($value);
+}
+
+if (strlen($datosFixed["nombre"]) == 0){
+  $errores["nombre"]="* El campo 'Nombre y apellido' debe estar completo.";
+} elseif (ctype_alpha(str_replace($caracteresOK,'',  $datosFixed["nombre"]))  == false){
+  $errores["nombre"] = "* El nombre y apellido no deben contener caracteres especiales ni números.";
+}
+
+if (strlen($datosFixed["email"]) == 0){
+  $errores["email"]="* El campo E-mail debe estar completo.";
+} elseif (!filter_var($datosFixed["email"], FILTER_VALIDATE_EMAIL)){
+  $errores["email"]="* El e-mail debe ser válido.";
+} elseif ($dbAll->existeUsuario($datosFixed["email"]) && $datosFixed["email"] != $usuario->getEmail()){
+  $errores["email"]="* Este e-mail ya se encuentra registrado.";
+}
+
+if($_FILES["avatar"]["error"] !== 0 && $_FILES["avatar"]["error"] !== 4){
+  $errores["avatar"]["error"] ="* Imagen de perfil: error. Volver a subirla.";
+}
+if ($_FILES["avatar"]["size"] >= 2097152) {
+  $errores["avatar"]["size"]="* El tamaño de la imagen no puede ser superior a 2 MB.";
+}
+$ext = pathinfo($_FILES["avatar"]["name"],PATHINFO_EXTENSION);
+if ($_FILES["avatar"]["error"] == 0 && $ext != "jpg" && $ext != "JPG" && $ext != "jpeg" && $ext != "JPEG" && $ext != "png" && $ext != "PNG") {
+  $errores["avatar"]["type"] = "* La imagen debe ser jpg, jpeg o png.";
+}
+
+if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass"]) < 5) {
+  $errores["nPass"]="* La nueva contraseña debe tener como mínimo 5 caracteres.";
+}
+
+if (strlen($_POST["nPass"]) > 0 && strlen($_POST["nPass2"]) == 0){
+  $errores["nPass2"]="* Por favor repetir la nueva contraseña.";
+} elseif ($_POST["nPass"] !== $_POST["nPass2"]){
+  $errores["nPass"]="* Las nuevas contraseñas no coinciden.";
+}
+
+if (strlen($_POST["pass"]) == 0){
+  $errores["pass"]="* El campo Contraseña debe estar completo.";
+}
+
+elseif ($dbAll->existeUsuario($_SESSION["usuario"])) {
+  $usuario = $dbAll-> buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+  if(!password_verify($_POST["pass"], $usuario->getPass())){
+    $errores["pass"]="Contraseña errónea.";
+}
+}
+
+// VALIDAR MAILS YA EXISTENTES:
+
+// $json = file_get_contents("db.json");
+// $array = json_decode($json, true);
+//
+// $usuario = buscarUsuarioPorMailoUser($_SESSION["usuario"]);
+//
+// if($array !== null){
+// foreach ($array as $key => $value) {
+//   foreach ($value as $value2) {
+//
+//     if ($datosFixed["email"] !== $usuario["email"] && $value2["email"] == $datosFixed["email"]){
+//       $errores["email"]="* Este e-mail ya se encuentra registrado.";
+//     }
+//   }
+// }
+// }
+
+
+// debug
+// echo "errores";
+// var_dump ($errores);
+// echo "datosFixed";
+// var_dump ($datosFixed);
+// fin debug
+
+  return $errores;
+}
+
 
 public static function validarSubidaArticulo($datos){
 // VALIDA LOS DATOS INGRESADOS EN EL FORMULARIO DE SUBIDA DE ARTICULO/PLANTA

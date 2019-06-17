@@ -41,43 +41,29 @@ class DbMysql extends Db
   $stmt->execute();
   }
 
-// // VALIDAR NOMBRES DE USUARIOS o MAILS YA EXISTENTES:
-// // FUNCIONES QUEDAN EN DESUSO. SON REEMPLAZADAS POR LA FUNCION existeUsuario($emailoUser)
-// public function existeMail($email)
-// {
-//   // global $dbAll;
-//
-//   $stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE email=:email");
-//
-//   $stmt-> bindValue(":email", $email);
-//
-//   $stmt->execute();
-//   $resultado_email = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-//   if ($resultado_email){
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// public function existeUsuario($usuario)
-// {
-//   // global $dbAll;
-//
-//   $stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE user=:usuario");
-//
-//   $stmt-> bindValue(":usuario", $usuario);
-//
-//   $stmt->execute();
-//   $resultado_user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-//   if ($resultado_user){
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
+// GUARDA UN USUARIO MODIFICADO EN LA DB:
+public function guardarUsuarioModificado($usuario){
+
+  // global $db;
+  $nombre_usuario = $usuario->getUser();
+
+  $stmt = $this->connection->prepare("UPDATE usuarios
+    SET nombre = :nombre,
+    email = :email,
+    avatar = :avatar,
+    pass = :pass
+    WHERE user = '$nombre_usuario'");
+
+  $stmt-> bindValue(":nombre", $usuario->getNombre());
+  $stmt-> bindValue(":email", $usuario->getEmail());
+  $stmt-> bindValue(":avatar", $usuario->getAvatar());
+  $stmt-> bindValue(":pass", $usuario->getPass());
+
+  $stmt->execute();
+}
+
+// BUSCA UN USUARIO EN LA DB, POR MAIL O POR USER. SI EXISTE, RETORNA UN OBJETO USUARIO
 public function buscarUsuarioPorMailoUser($emailoUser)
 {
 // global $db;
@@ -99,6 +85,29 @@ if ($usuario){
 }
 }
 
+// BUSCA UN USUARIO EN LA DB, POR MAIL O POR USER. SI EXISTE, RETORNA UN ARRAY DEL USUARIO. ES UN PARCHE PARA EL CONSTRUCTOR DE USUARIO
+public function buscarUsuarioPorMailoUserArray($emailoUser)
+{
+// global $db;
+$stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE user=:usuario OR email=:email");
+
+$stmt-> bindValue(":usuario", $emailoUser);
+$stmt-> bindValue(":email", $emailoUser);
+
+$stmt->execute();
+
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($usuario){
+  // return $usuario;
+  // $usuario = new Usuario($usuario);
+  return $usuario;
+}else{
+  return null;
+}
+}
+
+// BUSCA UN USUARIO EN LA DB, POR ID. RETORNA UN OBJETO USUARIO
 // AGREGAR INNER JOIN ARTICULOS??
 public function buscarUsuarioPorId($id){
 
@@ -146,6 +155,7 @@ ORDER BY id DESC LIMIT 1");
   return $id["id"] + 1;
 }
 
+// BUSCA TODOS LOS ARTICULOS EN LA DB. RETORNA UN ARRAY
 public function traerTodasLasPlantas(){
 
   // global $db;
@@ -160,11 +170,13 @@ public function traerTodasLasPlantas(){
   $articulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   // return $articulos;
-  $articulos = new Articulo($articulos);
+  // $articulos = new Articulo($articulos);
+  // WARNINg!!
   return $articulos;
 
 }
 
+// BUSCA TODOS LOS ARTICULOS DE DETERMINADO USUARIO EN LA DB. RETORNA UN ARRAY
 public function traerPlantas($usuarioID){
 
   // global $db;
@@ -182,6 +194,7 @@ public function traerPlantas($usuarioID){
 
 }
 
+// BUSCA UN ARTICULO POR ID EN LA DB. RETORNA UN ARRAY
 public function traerUnaPlanta($articuloID){
 
   // global $db;
@@ -217,7 +230,7 @@ $stmt-> bindValue(":imagen2", $articulo->getImagen2());
 $stmt-> bindValue(":imagen3", $articulo->getImagen3());
 $stmt-> bindValue(":descripcion", $articulo->getDescripcion());
 $stmt-> bindValue(":disponible", $articulo->getDisponible());
-$stmt-> bindValue(":id_usuario", $articulo->getId_usuario());
+$stmt-> bindValue(":id_usuario", $articulo->getId_usuario()->getId());
 $stmt-> bindValue(":id_categoria", $articulo->getId_categoria());
 
 // $stmt-> bindValue(":id_punto", "pendiente");

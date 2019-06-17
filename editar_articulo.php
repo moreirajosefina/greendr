@@ -17,11 +17,10 @@ if(!$auth->usuarioLogueado()){
 $idPlanta = $_GET["id"];
 
 $planta = $dbAll->traerUnaPlanta($idPlanta);
+$planta = new Articulo ($planta);
 
 // debug:
 // var_dump($planta);
-// echo "nombre de la planta: ";
-// echo $planta["nombre"];
 // fin debug
 
 // variables para persistencia:
@@ -64,13 +63,13 @@ $descripcionOut = trim($_POST["descripcion"]);
 
       //subir imagen;
     if ($_FILES["imagen1"]["error"] == 0){
-    move_uploaded_file($_FILES["imagen1"]["tmp_name"], $articuloModificado["imagen1"]);
+    move_uploaded_file($_FILES["imagen1"]["tmp_name"], $articuloModificado->getImagen1());
     }
     if ($_FILES["imagen2"]["error"] == 0){
-      move_uploaded_file($_FILES["imagen2"]["tmp_name"], $articuloModificado["imagen2"]);
+      move_uploaded_file($_FILES["imagen2"]["tmp_name"], $articuloModificado->getImagen2());
     }
     if ($_FILES["imagen3"]["error"] == 0){
-      move_uploaded_file($_FILES["imagen3"]["tmp_name"], $articuloModificado["imagen3"]);
+      move_uploaded_file($_FILES["imagen3"]["tmp_name"], $articuloModificado->getImagen3());
     }
 
     // header("Location:editar_mis_articulos.php");
@@ -101,10 +100,10 @@ $descripcionOut = trim($_POST["descripcion"]);
 <h3 class="h3_editarArticulo">MODIFICAR PLANTA:</h3>
 
 
-<h3 class="h3_editarArticulo"><?=$planta["nombre"]?></h3>
+<h3 class="h3_editarArticulo"><?=$planta->getNombre()?></h3>
 
 
-<form class="form_editarArticulo" action="editar_articulo.php?id=<?=$planta["id"]?>" method="post" enctype="multipart/form-data">
+<form class="form_editarArticulo" action="editar_articulo.php?id=<?=$planta->getId()?>" method="post" enctype="multipart/form-data">
 
   <div class="items_editarArticulo">
         <label class="label_editarArticulo" for="nombre">Nombre: </label>
@@ -115,7 +114,7 @@ $descripcionOut = trim($_POST["descripcion"]);
         <?php elseif(!isset($erroresOut["nombre"]) && isset($_POST["nombre"])): ?>
           value= "<?=$nombreOut?>"
         <?php else:  ?>
-          value= "<?=$planta["nombre"]?>"
+          value= "<?=$planta->getNombre()?>"
        <?php endif; ?>
       >
         <p class="error_editarArticulo">
@@ -132,7 +131,7 @@ $descripcionOut = trim($_POST["descripcion"]);
         <?php elseif(!isset($erroresOut["n_cientifico"]) && isset($_POST["n_cientifico"])): ?>
           value= "<?=$n_cientificoOut?>"
         <?php else:  ?>
-          value= "<?=$planta["n_cientifico"]?>"
+          value= "<?=$planta->getNcientifico()?>"
        <?php endif; ?>
       >
         <p class="error_editarArticulo">
@@ -145,35 +144,35 @@ $descripcionOut = trim($_POST["descripcion"]);
 
 <div class="radio_items_editarArticulo">
         <label class="radio_label_editarArticulo" for="planta">Planta </label>
-        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 1 )|| $planta["categoria"] == "PLANTA"): ?>
+        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 1 )|| $planta->getId_categoria() == "PLANTA"): ?>
         <input class="radio1_input_editarArticulo" type="radio" id="planta" name="categoria" value="1" checked>
         <?php else: ?>
         <input class="radio1_input_editarArticulo" type="radio" id="planta" name="categoria" value="1">
         <?php endif ?>
 
         <label class="radio_label_editarArticulo" for="esqueje">Esqueje </label>
-        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 2) || $planta["categoria"] == "ESQUEJE"): ?>
+        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 2) || $planta->getId_categoria() == "ESQUEJE"): ?>
         <input class="radio1_input_editarArticulo" type="radio" id="esqueje" name="categoria" value="2" checked>
         <?php else: ?>
         <input class="radio1_input_editarArticulo" type="radio" id="esqueje" name="categoria" value="2">
         <?php endif ?>
 
         <label class="radio_label_editarArticulo" for="semillas">Semillas </label>
-        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 3 )|| $planta["categoria"] == "SEMILLAS"): ?>
+        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 3 )|| $planta->getId_categoria() == "SEMILLAS"): ?>
         <input class="radio1_input_editarArticulo" type="radio" id="semillas" name="categoria" value="3" checked>
         <?php else: ?>
         <input class="radio1_input_editarArticulo" type="radio" id="semillas" name="categoria" value="3">
         <?php endif ?>
 
         <label class="radio_label_editarArticulo" for="producto">Producto </label>
-        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 4) || $planta["categoria"] == "PRODUCTO"): ?>
+        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 4) || $planta->getId_categoria() == "PRODUCTO"): ?>
         <input class="radio1_input_editarArticulo" type="radio" id="producto" name="categoria" value="4" checked>
         <?php else: ?>
         <input class="radio1_input_editarArticulo" type="radio" id="producto" name="categoria" value="4">
         <?php endif ?>
 
         <label class="radio_label_editarArticulo" for="servicio">Servicio </label>
-        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 5) || $planta["categoria"] == "SERVICIO"): ?>
+        <?php if((isset($_POST["categoria"]) && $_POST["categoria"] == 5) || $planta->getId_categoria() == "SERVICIO"): ?>
         <input class="radio1_input_editarArticulo" type="radio" id="servicio" name="categoria" value="5" checked>
         <?php else: ?>
         <input class="radio1_input_editarArticulo" type="radio" id="servicio" name="categoria" value="5">
@@ -188,7 +187,7 @@ $descripcionOut = trim($_POST["descripcion"]);
         <label class="label_editarArticulo" for="desc">Descripción: </label>
 
 <textarea id="desc" name="descripcion" rows="5" cols="45" placeholder="..."><?php if(isset($erroresOut["descripcion"])):?><?=$descripcionOut=""?><?php elseif(!isset($erroresOut["descripcion"]) && isset($_POST["descripcion"])): ?><?=$descripcionOut?>
-<?php else:  ?><?=$planta["descripcion"]?><?php endif; ?></textarea>
+<?php else:  ?><?=$planta->getDescripcion()?><?php endif; ?></textarea>
 
         <p class="error_editarArticulo">
         <?php if(isset($erroresOut["descripcion"])){echo $erroresOut["descripcion"]; } ?>
@@ -199,7 +198,7 @@ $descripcionOut = trim($_POST["descripcion"]);
 
         <label class="label_editarArticulo" for="">Imágenes: </label>
 
-<img class="img_editarArticulo" src="<?=$planta["imagen1"]?>" alt="imagen1">
+<img class="img_editarArticulo" src="<?=$planta->getImagen1()?>" alt="imagen1">
 
         <label class="label_editarArticulo" for="ModificarImagen1">Modificar imagen 1: </label>
 
@@ -211,8 +210,8 @@ $descripcionOut = trim($_POST["descripcion"]);
         if(isset($erroresOut["imagen1"]["type"])){echo $erroresOut["imagen1"]["type"]; }   ?>
         </p>
 
-<?php if($planta["imagen2"] != "null"): ?>
-<img class="img_editarArticulo" src="<?=$planta["imagen2"]?>" alt="imagen2">
+<?php if($planta->getImagen2() != "null"): ?>
+<img class="img_editarArticulo" src="<?=$planta->getImagen2()?>" alt="imagen2">
 <?php endif; ?>
         <label class="label_editarArticulo" for="ModificarImagen2">Modificar imagen 2: </label>
 
@@ -224,8 +223,8 @@ $descripcionOut = trim($_POST["descripcion"]);
         if(isset($erroresOut["imagen2"]["type"])){echo $erroresOut["imagen2"]["type"]; }   ?>
         </p>
 
-<?php if($planta["imagen3"] != "null"): ?>
-<img class="img_editarArticulo" src="<?=$planta["imagen3"]?>" alt="imagen3">
+<?php if($planta->getImagen3() != "null"): ?>
+<img class="img_editarArticulo" src="<?=$planta->getImagen3()?>" alt="imagen3">
 <?php endif; ?>
         <label class="label_editarArticulo" for="ModificarImagen3">Modificar imagen 3: </label>
 

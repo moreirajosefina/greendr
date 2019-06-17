@@ -24,12 +24,6 @@ if(!$auth->usuarioLogueado()){
 
 <h3 class="h3_cpanel">PANEL DE CONTROL</h3>
 
-<?php $usuario = $dbAll->traerUsuarioLogueado() ?>
-
-<!-- <div class="nombre_perfil_cpanel">
-<h2 class="h2_cpanel"><?=$usuario["user"]?></h2>
-<img class="avatar_perfil_cpanel" src="<?=$usuario["avatar"]?>" alt="avatar">
-</div> -->
 
 <!-- <div class="plantas_cpanel"> -->
 
@@ -63,19 +57,23 @@ SUBIR PLANTA*
           </article>
       </div>
 
-      <!-- ?php $usuario = traerUsuarioLogueado(); ya está arriba en línea 26 -->
+
+      <?php $usuario = $dbAll->traerUsuarioLogueado() ?>
+
       <?php
-      $id = $usuario["id"];
+      $id = $usuario->getId();
       $plantas = $dbAll->traerPlantas($id);?>
+
       <?php foreach ($plantas as $key => $value) : ?>
+      <?php $planta = new Articulo($value) ?>
 
       <div class="carousel-item">
         <article id="product_cpanel" class="product d-block w-100">
-        <a class="odio" href="editar_articulo.php?id=<?=$value["id"]?>">
-        <img class="photo" src="<?=$plantas[$key]["imagen1"]?>" alt="planta">
+        <a class="odio" href="editar_articulo.php?id=<?=$planta->getId()?>">
+        <img class="photo" src="<?=$planta->getImagen1()?>" alt="planta">
         <div class="texto">
-        <h3><?=$plantas[$key]["categoria"] ?></h3>
-        <h2><?=$plantas[$key]["nombre"] ?></h2>
+        <h3><?=$planta->getId_categoria()?></h3>
+        <h2><?=$planta->getNombre() ?></h2>
         </div>
         </a>
         </article>
