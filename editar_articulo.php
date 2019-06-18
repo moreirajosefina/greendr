@@ -251,9 +251,15 @@ $descripcionOut = trim($_POST["descripcion"]);
   </div>
 
   <div class="items_editarArticulo">
-  <button class="descartar_editarArticulo" type="button" name="button">
-  <a href="editar_mis_articulos.php">DESCARTAR CAMBIOS</a>
+  <button class="descartar_editarArticulo" type="button">
+  <a href="editar_mis_articulos.php"><p class="crear">DESCARTAR CAMBIOS</p></a>
   </button>
+
+<!-- botón no funciona... no sé porqué
+<button class="descartar_editarArticulo" type="button" name="button">
+<a href="editar_mis_articulos.php">DESCARTAR CAMBIOS</a>
+</button> -->
+
   </div>
 
 

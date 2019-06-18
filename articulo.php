@@ -77,8 +77,8 @@ $titulo= "GREENDR - " . $planta->getNombre();
 
   <div class="items_button2_articulo">
     <?php if($_SESSION["usuario"] == $planta->getId_usuario()->getUser() || $_SESSION["usuario"] == $planta->getId_usuario()->getEmail()): ?>
-      <button class="button_articulo" type="button" name="button">
-      <a href="editar_articulo.php?id=<?=$planta->getId()?>">EDITAR PLANTA</a>
+      <button class="button_articulo" type="button">
+      <a href="editar_articulo.php?id=<?=$planta->getId()?>"><p class="crear">EDITAR PLANTA</p></a>
       </button>
     <?php else: ?>
   <button class="button_articulo" type="button" name="button">
@@ -134,7 +134,7 @@ $titulo= "GREENDR - " . $planta->getNombre();
 <div class="items_button1_articulo">
   <?php if($_SESSION["usuario"] == $planta->getId_usuario()->getUser() || $_SESSION["usuario"] == $planta->getId_usuario()->getEmail()): ?>
     <button class="button_articulo" type="button" name="button">
-    <a href="editar_articulo.php?id=<?=$planta->getId()?>">EDITAR PLANTA</a>
+    <a href="editar_articulo.php?id=<?=$planta->getId()?>"><p class="crear">EDITAR PLANTA</p></a>
     </button>
   <?php else: ?>
 <button class="button_articulo" type="button" name="button">

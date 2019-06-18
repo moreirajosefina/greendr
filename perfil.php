@@ -161,9 +161,10 @@ if($_POST){
   </div>
 
   <div class="items_perfil">
-  <button class="descartar_perfil" type="button" name="button">
-  <a href="control_panel.php">DESCARTAR CAMBIOS</a>
+  <button class="descartar_perfil" type="button">
+  <a href="control_panel.php"><p class="crear">DESCARTAR CAMBIOS</p></a>
   </button>
+  <!-- button sin elemento p adentro no funciona bien o con name="button" tampoco... no entiendo -->
   </div>
 
 </form>
