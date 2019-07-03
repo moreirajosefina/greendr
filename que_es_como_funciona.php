@@ -1,7 +1,8 @@
 <?php
 $titulo= "Qué es y cómo funciona GREENDR";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
 // if(usuarioLogueado()){
 //   header("Location:index.php");
@@ -54,7 +55,7 @@ Qué es Greendr
 </button>
 </a> -->
 
-<?php if(!usuarioLogueado()): ?>
+<?php if(!$auth->usuarioLogueado()): ?>
 <a href="registro.php">
 <button class="button_boarding" type="button">
 Registrate acá

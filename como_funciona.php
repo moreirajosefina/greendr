@@ -1,7 +1,8 @@
 <?php
 $titulo= "Cómo funciona GREENDR";
 
-include "funciones_greendr.php";
+// include "funciones_greendr.php";
+include "init.php";
 
 // if(usuarioLogueado()){
 //   header("Location:index.php");
